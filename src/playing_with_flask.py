@@ -1,4 +1,4 @@
-from flask import Flask, json
+from flask import Flask, jsonify
 app = Flask(__name__)
 
 @app.route('/test')
@@ -8,13 +8,7 @@ def hello_world():
 @app.route('/json')
 def return_json():
     data = ["hello world!","with a json!"]
-
-    response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        # mimetype='application/json'
-    )
-    return response
+    return jsonify(data)
     
 
 if __name__ == "__main__":
