@@ -1,5 +1,6 @@
 import json
 import ezdxf
+from dxf_parsers import *
 
 default_types = [
     'POINT',
