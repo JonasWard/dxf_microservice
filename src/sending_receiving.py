@@ -1,14 +1,13 @@
 import os
 from flask import Flask, request, abort, jsonify, send_from_directory
 
-
 UPLOAD_DIRECTORY = "project/api_uploaded_files"
 
 if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
 
-
 api = Flask(__name__)
+
 
 @api.route("/files")
 def list_files():
@@ -40,7 +39,6 @@ def post_file(filename):
 
     # Return 201 CREATED
     return "", 201
-
 
 if __name__ == "__main__":
     api.run(debug=True, port=5000)
