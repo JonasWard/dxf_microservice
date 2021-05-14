@@ -1,10 +1,14 @@
 import json, ezdxf
+import math
 import os
 import traceback
 
+from ezdxf.entities import Spline
 from ezdxf.layouts import Modelspace
 from ezdxf.entities.dxfgfx import DXFGraphic
 from ezdxf.math import Vec3
+
+# from dxf to geometry json using ezdxf
 
 # DXF parsers
 
@@ -14,7 +18,7 @@ object_prototype = {
     "name": None,
     "type": "STAMP",
     "reference_objects": None,
-    "radius": 1.,
+    "radius": None,
     "invalidities": [],
     "uuid": None,
     "layer": "0",
@@ -46,10 +50,10 @@ def new_object(geom_type: str, layer_name: str = None, uuid: str = None) -> dict
         new_object dict"""
 
     n_dict = dict(object_prototype)
-    if layer_name is None or isinstance(layer_name, str):
-        n_dict["layer_name"] = "default"
+    if layer_name is None or not(isinstance(layer_name, str)):
+        n_dict["layer"] = "default"
     else:
-        n_dict["layer_name"] = layer_name
+        n_dict["layer"] = layer_name
 
     n_dict["type"] = geom_type
     n_dict["uuid"] = uuid
@@ -124,7 +128,19 @@ def parse_blocks(blcks: list) -> list:
 
 
 def parse_spline(spl) -> dict:
-    loc_obj = new_object('POLYLINE', spl.dxf.layer, str(spl.uuid))
+    correction_tolerance = .1
+
+    if spl.dxf.dxftype == 'SPLINE':
+        vs = list(spl.flattening(correction_tolerance, 1))
+    else:
+        vs = []
+
+    if spl.closed:
+        loc_obj = new_object('POLYGON', spl.dxf.layer, str(spl.uuid))
+    else:
+        loc_obj = new_object('POLYLINE', spl.dxf.layer, str(spl.uuid))
+
+    loc_obj["vertices"] = parse_vertices(vs)
     return loc_obj
 
 
@@ -135,7 +151,8 @@ geom_mapping = {
     'LINE'      : parse_line,
     'CIRCLE'    : parse_circle,
     'POLYLINE'  : parse_polyline,
-    'LWPOLYLINE': parse_polyline
+    'LWPOLYLINE': parse_polyline,
+    'SPLINE'    : parse_spline
 }
 
 default_types = [
@@ -143,13 +160,11 @@ default_types = [
     'LINE',
     'POLYLINE',
     'LWPOLYLINE',
-    'CIRCLE'
+    'CIRCLE',
+    'SPLINE'
 ]
 
 dxf_to_json_mapping = {
-    '0' : ['LINE'],
-    '1.SectieLijnHard' : ['LINE'],
-    '0.Uitlijning' : ['LINE', 'POLYLINE', 'LWPOLYLINE']
 }
 
 # file handling
@@ -275,14 +290,18 @@ if __name__ == "__main__":
 
     path_list = list(os.listdir("./test_data/"))
 
-    pth = src_path + "circle_line_pl.dxf"
-    print("==== {} ====".format(pth))
-    # msp = opening_dxf(pth)
-    # all_types = deconstruct_msp(msp)
+    # pth = src_path + "circle_line_pl.dxf"
+    # print("==== {} ====".format(pth))
+    # # msp = opening_dxf(pth)
+    # # all_types = deconstruct_msp(msp)
+    #
+    # dxf_to_json(pth)
+    #
+    # pth = src_path + "block_exported_2.dxf"
+    # # print("==== {} ====".format(pth))
+    # dxf_to_json(pth)
 
-    dxf_to_json(pth)
-
-    pth = src_path + "block_exported_2.dxf"
-    print("==== {} ====".format(pth))
-
-    dxf_to_json(pth)
+    for pth in path_list:
+        file_extension = os.path.splitext(pth)[1][1:]
+        if file_extension == 'dxf':
+            dxf_to_json(src_path+pth)
