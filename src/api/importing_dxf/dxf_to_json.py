@@ -185,17 +185,23 @@ def entity_parsing(e: DXFGraphic):
     return geom_mapping[e.dxftype()](e)
 
 
-def dxf_to_json(dxf_file: str):
+def dxf_to_json(dxf_file: str, save_file=False):
     """function that takes a path string pointing to a dxf and returns a json"""
     dxf_msp = opening_dxf(dxf_file)
     objs = deconstruct_msp(dxf_msp)
 
-    # print(os.path.splitext(dxf_file))
-    json_path = os.path.splitext(dxf_file)[0] + ".json"
-    print(json_path)
+    if save_file:
+        # print(os.path.splitext(dxf_file))
+        json_path = os.path.splitext(dxf_file)[0] + ".json"
+        print(json_path)
 
-    with open(json_path, 'w') as outfile:
-        json.dump(objs, fp=outfile)
+        with open(json_path, 'w') as outfile:
+            json.dump(objs, fp=outfile)
+
+        return {json_path}
+
+    else:
+        return objs
 
 
 def construct_layer_map(dxf_layers) -> dict:
@@ -285,10 +291,10 @@ def dxf_check(map_dict: dict, layer_name: str, entity_type: str) -> bool:
 
 if __name__ == "__main__":
 
-    src_path = "./test_data/"
+    src_path = "../../test_data/"
     global_all_types = set()
 
-    path_list = list(os.listdir("./test_data/"))
+    path_list = list(os.listdir("../../test_data/"))
 
     # pth = src_path + "circle_line_pl.dxf"
     # print("==== {} ====".format(pth))
