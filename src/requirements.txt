@@ -1,30 +1,30 @@
-aniso8601 @ file:///home/conda/feedstock_root/build_artifacts/aniso8601_1618789466884/work
-attrs @ file:///home/conda/feedstock_root/build_artifacts/attrs_1605083924122/work
+aniso8601==9.0.1
+attrs==20.3.0
 brotlipy==0.7.0
 certifi==2021.5.30
-cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1613413892199/work
-chardet @ file:///Users/runner/miniforge3/conda-bld/chardet_1610093613037/work
+cffi==1.14.5
+chardet==4.0.0
 click==7.1.2
-cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography_1616851523607/work
-ezdxf @ file:///Users/runner/miniforge3/conda-bld/ezdxf_1618052575573/work
+cryptography==3.4.7
+ezdxf==0.16.1
 Flask==1.1.2
-flask-restplus @ file:///Users/runner/miniforge3/conda-bld/flask-restplus_1610536989543/work
+flask-restplus==0.13.0
 Flask-Script==2.0.6
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work
-importlib-metadata @ file:///Users/runner/miniforge3/conda-bld/importlib-metadata_1618291714815/work
-itsdangerous==1.1.0
-Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1612119311452/work
-jsonschema @ file:///home/conda/feedstock_root/build_artifacts/jsonschema_1614815863336/work
-MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1610127727012/work
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1593275161868/work
-pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1608055815057/work
+idna==2.10
+importlib-metadata==3.10.1
+
+
+jsonschema==3.2.0
+MarkupSafe==1.1.1
+pycparser==2.20
+pyOpenSSL==20.0.1
 pyparsing==2.4.7
-pyrsistent @ file:///Users/runner/miniforge3/conda-bld/pyrsistent_1610146831305/work
-PySocks @ file:///Users/runner/miniforge3/conda-bld/pysocks_1610291470465/work
+pyrsistent==0.17.3
+PySocks==1.7.1
 python-dateutil==2.8.1
-pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1612179539967/work
-requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1608156231189/work
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1590081179328/work
-urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1615828766818/work
+pytz==2021.1
+requests==2.25.1
+six==1.15.0
+urllib3==1.26.4
 Werkzeug==0.16.0
-zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1614945704755/work
+zipp==3.4.1
