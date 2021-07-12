@@ -40,5 +40,6 @@ def post_file(filename):
     # Return 201 CREATED
     return "", 201
 
+
 if __name__ == "__main__":
-    api.run(debug=True, port=5000)
+    api.run(debug=True, port=5124)
