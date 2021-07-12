@@ -43,11 +43,13 @@ ADD /src /usr/src
 # install requirements
 RUN pip install -r /usr/src/requirements.txt
 
-WORKDIR /usr
-
-#PATH	/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WORKDIR /usr/
 
 CMD ["flask", "run", "--host", "1.1.1.1"]
 EXPOSE 5000
 ENTRYPOINT [ "python" ]
-CMD [ "src/__init__.py" ]
+CMD [ "/usr/src/__init__.py" ]
+
+"""python
+import sys
+sys.path.append("/usr")"""

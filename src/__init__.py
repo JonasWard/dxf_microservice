@@ -1,7 +1,7 @@
 import os
-import sys
-
-sys.path.append("/usr")
+# import sys
+#
+# sys.path.append("/usr")
 
 from flask import Flask, jsonify
 from flask_script import Manager
