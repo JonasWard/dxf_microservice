@@ -1,10 +1,19 @@
 import requests
 
-API_URL = 'http://127.0.0.1:5000/'
+API_URL = 'http://localhost:1338/'
 
-with open('/src/images/an_ugly_building.png') as fp:
-    content = fp.read()
 
-response = requests.post(
-    '{}/files/an_ugly_building.png'.format(API_URL), headers=headers, data=content
-)
+def send_local_file(path):
+
+    return requests.post('{}data/import'.format(API_URL), files={'file': open(path, 'r')})
+
+
+if __name__ == "__main__":
+    path = '../test_data/1-100_ModelTest.dxf'
+
+    # with open(path, 'r') as a_dxf:
+    #     print(len(a_dxf))
+
+    response = send_local_file(path)
+
+    print(response.content)

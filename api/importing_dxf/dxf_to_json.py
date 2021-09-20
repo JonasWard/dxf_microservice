@@ -294,7 +294,7 @@ if __name__ == "__main__":
     src_path = "../../test_data/"
     global_all_types = set()
 
-    path_list = list(os.listdir("../../test_data/"))
+    path_list = list(os.listdir(src_path))
 
     # pth = src_path + "circle_line_pl.dxf"
     # print("==== {} ====".format(pth))

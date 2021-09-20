@@ -109,9 +109,9 @@ parse_map = {
 
 
 if __name__ == "__main__":
-    src_path = "../../test_data/"
+    src_path = "../../test_data"
     # pth = src_path + "circle_line_pl.json"
-    path_list = list(os.listdir("../../test_data/"))
+    path_list = list(os.listdir(src_path))
 
     for pth in path_list:
         file_extension = os.path.splitext(pth)[1][1:]
