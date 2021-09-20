@@ -1,4 +1,7 @@
 import os
+# import sys
+#
+# sys.path.append("/usr")
 
 from flask import Flask
 
@@ -24,12 +27,13 @@ def create_app():
 if __name__ == "__main__":
     print("I started a server")
     app = create_app()
+    app.run(host="0.0.0.0")
 
     @app.route('/')
     def hello_world():
         return """<html>
    <body>
-      <form action = "http://localhost:5000/data/import" method = "POST" 
+      <form action = "http://0.0.0.0:5000/data/import" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>

@@ -8,6 +8,7 @@ export_blueprint = Blueprint('export', "export")
 @import_blueprint.route('/data/import', methods=['POST'])
 def retrieve_file():
     f = request.files['file']
+    print(f)
     f.save(f.filename)
 
     # if not f:
