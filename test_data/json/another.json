@@ -1,0 +1,26 @@
+{
+  "geometry_data": [
+    {
+      "connections": null,
+      "invalidities": [],
+      "layer": "LINE",
+      "name": null,
+      "radius": null,
+      "reference_objects": null,
+      "type": "POLYLINE",
+      "uuid": "7875c798-51f1-4f11-9a0f-b82b51e5bbe4",
+      "vertices": [
+        [
+          2132.095486964291,
+          2872.656703538482
+        ],
+        [
+          2123.260873244369,
+          2887.828884079351
+        ]
+      ]
+    }
+  ],
+  "message": "Successfully registered.",
+  "status": "success"
+}

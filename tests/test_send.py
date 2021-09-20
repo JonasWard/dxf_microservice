@@ -9,7 +9,7 @@ def send_local_file(path):
 
 
 if __name__ == "__main__":
-    path = '../test_data/1-100_ModelTest.dxf'
+    path = '../test_data/dxf/1-100_ModelTest.dxf'
 
     # with open(path, 'r') as a_dxf:
     #     print(len(a_dxf))

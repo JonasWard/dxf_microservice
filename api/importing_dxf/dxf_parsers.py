@@ -1,4 +1,4 @@
-
+import io
 import json, ezdxf
 import os
 import traceback
@@ -16,15 +16,26 @@ def opening_json(json_file: str) -> list:
     return jsn
 
 
+def to_binary_data(doc):
+    stream = io.StringIO()
+    doc.write(stream)
+    dxf_data = stream.getvalue()
+    stream.close()
+    enc = 'utf-8' if doc.dxfversion >= 'AC1021' else doc.encoding
+    return dxf_data.encode(enc)
+
+
 def json_to_dxf(json_file: str):
     doc = parse_json(json_file)
 
-    dxf_file = os.path.splitext(json_file)[0] + "_export.dxf"
-    doc.saveas(dxf_file)
+    dxf_file_name = os.path.splitext(json_file)[0] + "_export.dxf"
+    # doc.saveas(dxf_file_name)
+
+    return dxf_file_name, to_binary_data(doc)
 
 
 def parse_json(json_file: str) -> Drawing:
-    obj_list = opening_json(json_file)
+    obj_list = opening_json(json_file)['geometry_data']
 
     doc = ezdxf.new('R2007')
     msp = doc.modelspace()
