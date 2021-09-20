@@ -1,0 +1,12 @@
+# error codes
+OTHER = -1
+SUCCESS = 0
+PARSINGFAILURE = 1
+FILEERROR = 2
+
+# communication states
+IMPORT_DXF = 10
+IMPORT_HCD_DXF = 11
+EXPORT_DXF = 20
+EXPORT_HCD_DXF = 21
+

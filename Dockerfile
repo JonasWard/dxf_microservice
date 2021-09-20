@@ -1,26 +1,10 @@
-FROM python:3.9.2
-
-# install environment dependencies
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-    netcat \
-  && apt-get -q clean
-
-# set working directory
-RUN mkdir -p /usr/src/
-WORKDIR /usr/src/
-
-# add requirements (to leverage Docker cache)
-ADD src/requirements.txt /usr/src/requirements.txt
-
-# install requirements
-RUN pip install -r requirements.txt
-
-# add entrypoint.sh
-ADD src/entrypoint.sh /usr/src/entrypoint.sh
-
-# add app
-ADD src/reference /usr/src/
-
-# run server
-CMD ["./entrypoint.sh"]
+# init a base image (Alpine is small Linux distro)
+FROM python:3.9.2-alpine
+# define the present working directory
+WORKDIR /docker-flask-test
+# copy the contents into the working dir
+ADD . /docker-flask-test
+# run pip to install the dependencies of the flask app
+RUN pip install -r src/requirements.txt
+# define the command to start the container
+CMD ["python","src/server.py"]
