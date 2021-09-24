@@ -38,7 +38,7 @@ def test_data_list():
 @app.route("/data/stress_test")
 def stress_test():
     global HOST, PORT
-    return multi_threaded_stress_test("./test_data/dxf", HOST, PORT)
+    return multi_threaded_stress_test("./test_data/dxf", "./stress_testing_output/dxf", HOST, PORT)
 
 
 @app.route("/dxf_to_json", methods=['GET', 'POST'])
